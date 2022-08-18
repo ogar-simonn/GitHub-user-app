@@ -3,11 +3,11 @@ import { Info, Search, Navbar, User, Repo } from '../components';
 const Dashboard = () => {
   return (
     <main>
-      {/*<Navbar />
-      <Search /> */}
+      {/*<Navbar />*/}
+      <Search /> 
      <Info /> 
       <User />
-     <Repo />
+     {/*<Repo />*/}
     </main>
   );
 };
