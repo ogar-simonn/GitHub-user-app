@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+/*import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import FusionCharts from 'fusioncharts';
 
@@ -12,7 +12,7 @@ const chartConfigs = {
   width: 600,
   height: 400,
   dataFormat: 'json',
-  dataSource: {/* see data tab  */},
+  dataSource: {/* see data tab  },
 };
 
 const ChartComponent  = () => {
@@ -20,3 +20,4 @@ const ChartComponent  = () => {
 }
 export default ChartComponent; 
 
+*/
