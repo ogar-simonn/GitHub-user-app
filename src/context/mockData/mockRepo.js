@@ -1,4 +1,4 @@
-[
+export default [
   {
     "login": "tarasis",
     "id": 3006,
