@@ -1,27 +1,50 @@
 import React from 'react';
 import styled from 'styled-components';
 import { MdSearch } from 'react-icons/md';
+import axios from 'axios';
 import { GitHubContext } from '../context/context';
 const Search = () => {
-  const [user, setUser] = React.useState('')
-  const handleSubmit = (e) => {
-e.preventDefault();
-if(user) {
+  const { limitData, rootUrl, setGithubUser } = React.useContext(GitHubContext);
+  const { remaining, limit } = limitData;
 
-  
-}
-  }
-  return <section className="section">
-    <Wrapper>
-      <form onSubmit={handleSubmit}>
-        <div className="form-control">
-          <input type="text" placeholder="search github user " onChange={(e) =>setUser(e.target.value)} value={user}/>
-          <button type="submit">search</button>
-        </div>
-      </form>
-      <h3>requests: {3} of {60}</h3>
-    </Wrapper>
-  </section>
+  const [user, setUser] = React.useState('');
+  const fetchUser = async (url) => {
+    try {
+      const response = await axios(url);
+      const data = response.data;
+      setGithubUser(data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (user) {
+      if (+remaining > 0) {
+        fetchUser(`${rootUrl}/users/${user}`);
+      }
+    }
+  };
+  return (
+    <section className="section">
+      <Wrapper>
+        <form onSubmit={handleSubmit}>
+          <div className="form-control">
+            <input
+              type="text"
+              placeholder="search github user "
+              onChange={(e) => setUser(e.target.value)}
+              value={user}
+            />
+            <button type="submit">search</button>
+          </div>
+        </form>
+        <h3>
+          requests: {remaining} / {limit}
+        </h3>
+      </Wrapper>
+    </section>
+  );
 };
 
 const Wrapper = styled.div`

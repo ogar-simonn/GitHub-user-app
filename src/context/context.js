@@ -13,20 +13,22 @@ const GitHubProvider = ({children}) => {
   const [githubFollowers, setGithubFollowers] = useState(mockFollowers);
   const [repos, setRepos] = useState(mockRepos);
   const [githubUser, setGithubUser] = useState(mockUser);
+  const [limitData, setLimitData] = useState({})
 
   const checkLimit = async () => {
     try {
-    const response = axios(limitUrl)
+    const response = await axios(limitUrl)
     const data = response.data;
-    console.log(data);
+    const {core} = data.resources;;
+    setLimitData(core)
     } catch(err) {
       console.log(err)
     }
   }
-  useEffect(()=> {
+  React.useEffect(()=> {
     checkLimit()
   }, [])
-  return <GitHubContext.Provider value={{githubFollowers, repos, githubUser}}>{children}</GitHubContext.Provider>
+  return <GitHubContext.Provider value={{githubFollowers, repos, limitData,githubUser, rootUrl, setGithubUser}}>{children}</GitHubContext.Provider>
 }
 
 export {GitHubProvider, GitHubContext }
