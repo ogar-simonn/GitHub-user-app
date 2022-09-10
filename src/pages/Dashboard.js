@@ -1,9 +1,11 @@
 import React from 'react';
 import { Info, Search, Navbar, User, Repo } from '../components';
+
 const Dashboard = () => {
+  
   return (
     <main>
-      {/*<Navbar />*/}
+      <Navbar />
       <Search /> 
      <Info /> 
       <User />
